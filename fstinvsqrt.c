@@ -4,10 +4,11 @@
 #include <math.h>
 
 const char _VERSION[] = "0.0.1";
-const char _DOCSTRING[] = "`inv_sqrt(num)`\n"
-                          "C implementation of Fast Inverse Square Root for Python\n"
-                          "\n"
-                          "Accepts `int` or `float`, returns `float`.\n";
+const char _MODULE_DOCSTRING[] = "Python bindings for C implementation of Fast Inverse Square Root";
+const char _METHOD_DOCSTRING[] = "`inv_sqrt(num)`\n"
+                                 "C implementation of Fast Inverse Square Root for Python\n"
+                                 "\n"
+                                 "Accepts `int` or `float`, returns `float`.\n";
 
 
 float _Q_rsqrt( float number )
@@ -41,14 +42,14 @@ static PyObject * fastinvscqrt_invsqrt(PyObject * self, PyObject * args){
 
 
 static PyMethodDef QrsqrtMethods[] = {
-    {"inv_sqrt", fastinvscqrt_invsqrt, METH_VARARGS, PyDoc_STR(_DOCSTRING)},
+    {"inv_sqrt", fastinvscqrt_invsqrt, METH_VARARGS, PyDoc_STR(_METHOD_DOCSTRING)},
     {NULL, NULL, 0, NULL}
 };
 
 static struct PyModuleDef QrstartModule = {
     PyModuleDef_HEAD_INIT,
     "fstinvsqrt",
-    NULL,
+    _MODULE_DOCSTRING,
     -1,
     QrsqrtMethods
 };
