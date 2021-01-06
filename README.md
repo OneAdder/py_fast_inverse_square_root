@@ -17,8 +17,8 @@ pip install git+https://github.com/OneAdder/py_fast_inverse_square_root
 # Usage
 
 ```
->>> from fstinvsqrt import inv_sqrt
->>> inv_sqrt(5)
+>>> from fstinvsqrt import isqrt
+>>> isqrt(5)
 0.447141
 ```
 
@@ -37,6 +37,6 @@ turned out to be over 8 times slower:
 >>> seventeens = [17.0] * 1000000                                     
 >>> timeit(lambda: deque(map(struct_isqrt, seventeens)), number=10)
 6.205178371999864
->>> timeit(lambda: deque(map(inv_sqrt, seventeens)), number=10)        
+>>> timeit(lambda: deque(map(isqrt, seventeens)), number=10)        
 0.7283159819999128
 ```
