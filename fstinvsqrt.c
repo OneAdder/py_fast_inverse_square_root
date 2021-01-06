@@ -32,31 +32,35 @@ double _round(double num){
 }
 
 
-static PyObject * fastinvscqrt_invsqrt(PyObject * self, PyObject * args){
+static PyObject* fastinvscqrt_isqrt(PyObject* self, PyObject* args){
     const double num;
     if (!PyArg_ParseTuple(args, "d", &num)){
+        return NULL;
+    }
+    if (num < 0){
+        PyErr_SetString(PyExc_ValueError, "Number cannot be negative");
         return NULL;
     }
     return PyFloat_FromDouble(_round(_Q_rsqrt((float) num)));
 }
 
 
-static PyMethodDef QrsqrtMethods[] = {
-    {"inv_sqrt", fastinvscqrt_invsqrt, METH_VARARGS, PyDoc_STR(_METHOD_DOCSTRING)},
+static PyMethodDef fstinvsqrtMethods[] = {
+    {"isqrt", fastinvscqrt_isqrt, METH_VARARGS, PyDoc_STR(_METHOD_DOCSTRING)},
     {NULL, NULL, 0, NULL}
 };
 
-static struct PyModuleDef QrstartModule = {
+static struct PyModuleDef fstinvsqrtModule = {
     PyModuleDef_HEAD_INIT,
     "fstinvsqrt",
     _MODULE_DOCSTRING,
     -1,
-    QrsqrtMethods
+    fstinvsqrtMethods
 };
 
 
 PyMODINIT_FUNC PyInit_fstinvsqrt(void){
-    PyObject * module = PyModule_Create(&QrstartModule);
+    PyObject* module = PyModule_Create(&fstinvsqrtModule);
     PyModule_AddStringConstant(module, "__version__", _VERSION);
     return module;
 }
